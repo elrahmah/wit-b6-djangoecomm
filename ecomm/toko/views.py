@@ -198,13 +198,15 @@ def remove_single_item_from_cart(request, slug):
 
                     if order_produk_item.quantity > 1 :
                         order_produk_item.quantity -= 1
+                        pesan = f"Jumlah ProdukItem sudah diperbarui"
+                        messages.info(request, pesan)
                     else:
                         order.produk_items.remove(order_produk_item)
                         order_produk_item.delete()
+                        pesan = f"ProdukItem sudah dihapus"
+                        messages.info(request, pesan)
                     order_produk_item.save()
 
-                    pesan = f"Jumlah ProdukItem sudah diperbarui"
-                    messages.info(request, pesan)
                     return redirect('toko:order-summary')
                 except ObjectDoesNotExist:
                     print('Error: order ProdukItem sudah tidak ada')
