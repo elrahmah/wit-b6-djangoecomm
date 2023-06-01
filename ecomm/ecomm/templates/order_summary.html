@@ -48,7 +48,11 @@
                         {% endif %}
                     </div>
                 </td>
-                <td>{{ pItem.quantity }}</td>
+                <td>
+                    <a href="{% url 'toko:remove-single-item-from-cart' pItem.produk_item.slug %}"><i class="fas fa-minus mr-4"></i></a>
+                    {{ pItem.quantity }}
+                    <a href="{% url 'toko:add-to-cart' pItem.produk_item.slug %}"><i class="fas fa-plus ml-4"></i></a>
+                </td>
                 <td>                
                     {% if pItem.produk_item.harga_diskon %}
                     ${{ pItem.get_total_harga_diskon_item }}
@@ -56,6 +60,9 @@
                     {% else %}
                     ${{ pItem.get_total_harga_item }}
                     {% endif %}
+                    <a style="color:red" href="{% url 'toko:remove-from-cart' pItem.produk_item.slug %}">
+                        <i class="fas fa-trash float-end"></i>
+                    </a>
                 </td>
             </tr>
             {% empty %}
