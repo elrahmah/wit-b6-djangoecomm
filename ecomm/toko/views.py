@@ -5,11 +5,26 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.utils import timezone
 from django.views import generic
+from django.db.models import Q
+from django.views import View
 from paypal.standard.forms import PayPalPaymentsForm
 
 
 from .forms import CheckoutForm
 from .models import ProdukItem, OrderProdukItem, Order, AlamatPengiriman, Payment
+
+class Search(View):
+    def get(self, request):
+        query = self.request.GET.get('q')
+
+        query_list = ProdukItem.objects.filter(
+            Q(nama_produk__icontains=query) |
+            Q(deskripsi__icontains=query) 
+        )
+        context = {
+            'query_list': query_list,
+        }
+        return render(request, 'search.html' , context)
 
 class HomeListView(generic.ListView):
     template_name = 'home.html'
