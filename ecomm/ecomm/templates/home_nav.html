@@ -39,8 +39,11 @@
 
             <!-- Search -->
             <form class="w-auto py-1" role="search"  method="get" action="{%url 'search' %}"  style="max-width: 12rem">
-                <input type="search" name = "q" class="form-control rounded-0" placeholder="Search" aria-label="Search" value="{{request.Get.q}}">
-                <button class="btn btn-info" type="submit">search</button>
+                <div class="input-group mb-3">
+                    <input type="search" name = "q" class="form-control rounded-0" placeholder="Cari produk ..." aria-label="Search" value="{{request.Get.q}}">
+                    <!-- <button class="btn btn-info" type="submit">search</button> -->
+                    <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
             </form>
 
         </div>

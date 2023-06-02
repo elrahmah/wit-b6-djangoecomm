@@ -109,9 +109,9 @@ WSGI_APPLICATION = 'ecomm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'suci_db',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '06Mei1999@',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
     }
