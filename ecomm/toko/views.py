@@ -11,7 +11,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 
 
 from .forms import CheckoutForm
-from .models import ProdukItem, OrderProdukItem, Order, AlamatPengiriman, Payment
+from .models import ProdukItem, OrderProdukItem, Order, AlamatPengiriman, Payment, Category
 
 class Search(View):
     def get(self, request):
@@ -34,7 +34,18 @@ class HomeListView(generic.ListView):
 class ProductDetailView(generic.DetailView):
     template_name = 'product_detail.html'
     queryset = ProdukItem.objects.all()
-
+    
+class CategoryView(View):
+    def get(self, *args, **kwargs):
+        category = Category.objects.get(slug=self.kwargs['slug'])
+        item = ProdukItem.objects.filter(kategori=category, is_active=True)
+        context = {
+            'object_list': item,
+            'category_title': category,
+            'category_description': category.description,
+            'category_image': category.image
+        }
+        return render(self.request, "category.html", context)
 
 class CheckoutView(LoginRequiredMixin, generic.FormView):
     def get(self, *args, **kwargs):

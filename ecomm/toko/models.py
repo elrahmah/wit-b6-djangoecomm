@@ -22,6 +22,21 @@ PILIHAN_PEMBAYARAN = (
 
 User = get_user_model()
 
+class Category(models.Model):
+    title = models.CharField(max_length=100)    
+    slug = models.SlugField()
+    description = models.TextField()
+    image = models.ImageField()
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("toko:kategori", kwargs={
+            'slug': self.slug
+        })
+
 class ProdukItem(models.Model):
     nama_produk = models.CharField(max_length=100)
     harga = models.FloatField()
@@ -30,7 +45,8 @@ class ProdukItem(models.Model):
     deskripsi = models.TextField()
     gambar = models.ImageField(upload_to='product_pics')
     label = models.CharField(choices=PILIHAN_LABEL, max_length=4)
-    kategori = models.CharField(choices=PILIHAN_KATEGORI, max_length=2)
+    kategori = models.ForeignKey(Category, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.nama_produk} - ${self.harga}"
