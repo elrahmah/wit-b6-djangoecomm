@@ -33,7 +33,7 @@
 
 						<ul class="p-b-54">
 							<li class="p-t-4">
-								<a href="/shop" class="s-text13 active1">
+								<a href="/" class="s-text13 active1">
 									All
 								</a>
 							</li>
@@ -43,13 +43,6 @@
 						</ul>
 
 						
-						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
-
-							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
-								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-							</button>
-						</div>
 					</div>
 				</div>
 
@@ -57,9 +50,9 @@
 					<!--  -->
 					<div class="flex-sb-m flex-w p-b-35">
 
-						<span class="s-text8 p-t-5 p-b-5">
+						<!-- <span class="s-text8 p-t-5 p-b-5">
 							Showing 1–12 of 16 results
-						</span>
+						</span> -->
 					</div>
 
 					<!-- Product -->
@@ -70,7 +63,7 @@
 							<div class="block2">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
 									<div class="col-md-6 mb-4">
-                                        <img src="{{ object.gambar.url }}" class="img-fluid" alt="" />
+                                        <img src="{{ item.gambar.url }}" class="img-fluid" alt="" />
                                     </div>
 
 									<div class="block2-overlay trans-0-4">
@@ -94,7 +87,7 @@
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
-										${{item.price}}
+										RP.{{item.harga}}
 									</span>
 								</div>
 							</div>
