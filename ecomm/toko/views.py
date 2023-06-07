@@ -104,7 +104,7 @@ class PaymentView(LoginRequiredMixin, generic.FormView):
         template_name = 'payment.html'
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
-            
+            # untuk handel opsi pembayaran paypal
             paypal_data = {
                 'business': settings.PAYPAL_RECEIVER_EMAIL,
                 'amount': order.get_total_harga_order,
